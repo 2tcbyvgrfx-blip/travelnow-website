@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ترافل ناو - TravelNow | وكالة سفر وسياحة احترافية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* نظام الألوان الاحترافي */
+        :root {
+            --primary: #1a365d;       /* أزرق داكن فاخر */
+            --secondary: #d4af37;     /* ذهبي مميز */
+            --accent: #2d3748;        /* رمادي فاخر */
+            --light: #f8f9fa;         /* خلفية فاتحة */
+            --dark: #1a202c;          /* نص داكن */
+            --success: #38a169;       /* أخضر نجاح */
+            --danger: #e53e3e;        /* أحمر تنبيه */
+            --gradient: linear-gradient(135deg, #1a365d, #2d3748);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* إعادة الضبط */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* الخطوط الاحترافية */
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* شريط التنقل الثابت */
+        .navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .navbar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 3px solid var(--secondary);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .nav-links a.active {
+            color: var(--secondary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 1rem;
+            left: 1rem;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+
+        /* الهيدر الرئيسي */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--primary);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
+            background: #e6c34d;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-5px);
+        }
+
+        /* الأقسام */
+        .section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .section-title .title-line {
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--accent);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+            opacity: 0.8;
+        }
+
+        /* بطاقات الخدمات */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .service-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .service-card p {
+            color: var(--accent);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* معرض الصور */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 300px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* قسم الاتصال */
+        .contact-section {
+            background: var(--gradient);
+            color: white;
+            border-radius: 30px;
+            margin: 4rem auto;
+            max-width: 1200px;
+            overflow: hidden;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            padding: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            background: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--secondary);
+        }
+
+        /* وسائل التواصل */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* الفوتر */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* تأثيرات التمرير */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* زر العودة للأعلى */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background: #e6c34d;
+        }
+
+        /* التجاوب */
+        @media (max-width: 768px) {
+            .navbar .container {
+                padding: 0 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .contact-grid {
+                padding: 2rem;
+            }
+
+            .btn {
+                padding: 0.875rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .services-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="https://i.postimg.cc/RZ41J3mQ/FB-IMG-1745370320578.jpg" 
+                     alt="شعار ترافل ناو" 
+                     class="logo-img">
+                <div class="logo-text">ترافل <span>ناو</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a href="#services"><i class="fas fa-concierge-bell"></i> خدماتنا</a></li>
+                <li><a href="#gallery"><i class="fas fa-images"></i> معرض الصور</a></li>
+                <li><a href="#contact"><i class="fas fa-phone-alt"></i> اتصل بنا</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- الهيدر الرئيسي -->
+    <section id="home" class="hero">
+        <div class="hero-content fade-in">
+            <h1>رحلتك تبدأ مع <span style="color: #d4af37;">ترافل ناو</span></h1>
+            <p>وكالة سفر وسياحة احترافية تقدم حلولاً متكاملة لجميع احتياجات سفرك. نحن نساعدك على السفر إلى السعودية، الأردن، مصر، تركيا، الإمارات، عمان، الصين وكل دول العالم.</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/message/5RF7EDPCNRZWP1" class="btn btn-primary">
+                    <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
+                </a>
+                <a href="#services" class="btn btn-outline">
+                    <i class="fas fa-eye"></i> استعرض خدماتنا
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الخدمات -->
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>خدماتنا الاحترافية</h2>
+                <div class="title-line"></div>
+                <p>نقدم مجموعة متكاملة من خدمات السفر والسياحة بمعايير عالمية</p>
+            </div>
+            <div class="services-grid">
+                <!-- خدمة 1 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3>تذاكر الطيران</h3>
+                    <p>أفضل أسعار تذاكر الطيران لأي وجهة في العالم بأسعار منافسة وضمان أفضل العروض.</p>
+                </div>
+                <!-- خدمة 2 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <h3>التأشيرات والموافقات</h3>
+                    <p>إصدار جميع أنواع التأشيرات والموافقات الأمنية بسرعة وإحترافية عالية.</p>
+                </div>
+                <!-- خدمة 3 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3>حجز الفنادق</h3>
+                    <p>حجوزات فندقية في أفضل الفنادق العالمية بأسعار حصرية وضمان أفضل الخدمات.</p>
+                </div>
+                <!-- خدمة 4 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>تأجير السيارات</h3>
+                    <p>تأجير سيارات بمواصفات مختلفة تناسب جميع الاحتياجات وبأسعار تنافسية.</p>
+                </div>
+                <!-- خدمة 5 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <h3>النقل البري</h3>
+                    <p>خدمات النقل البري بين الدول بخدمات متميزة ومركبات مريحة وآمنة.</p>
+                </div>
+                <!-- خدمة 6 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>تأشيرات الطلاب</h3>
+                    <p>مساعدتك في إجراءات تأشيرات الدراسة والقبولات الجامعية حول العالم.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- معرض الصور -->
+    <section id="gallery" class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>معرض أعمالنا</h2>
+                <div class="title-line"></div>
+                <p>لقطات من إنجازاتنا وخدماتنا التي نقدمها لعملائنا الكرام</p>
+            </div>
+            <div class="gallery-grid">
+                <!-- صورة 1 -->
+                <div class="gallery-item fade-in">
+                    <img src="https://i.postimg.cc/fLmbCpbt/22.jpg" 
+                         alt="خدمات مصر - موافقات أمنية" 
+                         class="gallery-img">
+                    <div class="gallery-caption">
+                        <h4>خدمات مصر</h4>
+                        <p>موافقات أمنية وتأشيرات مصرية</p>
+                    </div>
+                </div>
+                <!-- صورة 2 -->
+                <div class="gallery-item fade-in">
+                    <img src="https://i.postimg.cc/1zLf6TFM/33.jpg" 
+                         alt="الصين - دعوات دخول" 
+                         class="gallery-img">
+                    <div class="gallery-caption">
+                        <h4>الصين</h4>
+                        <p>دعوات دخول مسبقة للصين</p>
+                    </div>
+                </div>
+                <!-- صورة 3 -->
+                <div class="gallery-item fade-in">
+                    <img src="https://i.postimg.cc/28MRzDN0/FB-IMG-1747284913470.jpg" 
+                         alt="الإمارات - تأشيرات" 
+                         class="gallery-img">
+                    <div class="gallery-caption">
+                        <h4>الإمارات</h4>
+                        <p>تأشيرات سريعة للإمارات</p>
+                    </div>
+                </div>
+                <!-- صورة 4 -->
+                <div class="gallery-item fade-in">
+                    <img src="https://i.postimg.cc/W4Vy3pWS/FB-IMG-1747284919638.jpg" 
+                         alt="عمان - سياحة" 
+                         class="gallery-img">
+                    <div class="gallery-caption">
+                        <h4>عمان</h4>
+                        <p>تأشيرات سياحية لعمان</p>
+                    </div>
+                </div>
+                <!-- صورة 5 -->
+                <div class="gallery-item fade-in">
+                    <img src="https://i.postimg.cc/ht2mJppc/11.jpg" 
+                         alt="تذاكر طيران" 
+                         class="gallery-img">
+                    <div class="gallery-caption">
+                        <h4>تذاكر الطيران</h4>
+                        <p>أفضل الأسعار لأي وجهة</p>
+                    </div>
+                </div>
+                <!-- صورة 6 -->
+                <div class="gallery-item fade-in">
+                    <img src="https://i.postimg.cc/qqmrchY3/jmyʿ-alkhdmat.jpg" 
+                         alt="جميع خدماتنا" 
+                         class="gallery-img">
+                    <div class="gallery-caption">
+                        <h4>جميع خدماتنا</h4>
+                        <p>كل ما تحتاجه في مكان واحد</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الاتصال -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="contact-section fade-in">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>تواصل معنا</h3>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4>الهاتف</h4>
+                                <p>+962 771 936 616</p>
+                                <p>+962 791831762</p>
+                                <p>+962 797604368</p>
+                                <p>+962 798836910</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>البريد الإلكتروني</h4>
+                                <p>Traflnawtravelnow@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>موقعنا</h4>
+                                <a href="https://goo.gl/maps/3X8AAGmKD4d9U7Jj9?g_st=aw" class="map-link" target="_blank" style="color: #d4af37; text-decoration: none;">عرض على خرائط جوجل</a>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://whatsapp.com/channel/0029VbABIRGDuMRXHrYQds2i" class="social-link" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://www.facebook.com/share/1BCez9d4yg/" class="social-link" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://t.me/boost/TRAVELNOW711" class="social-link" target="_blank">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                            <a href="https://www.instagram.com/travelnow711" class="social-link" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://youtube.com/@travelnow711" class="social-link" target="_blank">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>أرسل رسالة</h3>
+                        <form id="contactForm" style="display: grid; gap: 1.5rem;">
+                            <div>
+                                <input type="text" placeholder="اسمك الكريم" required 
+                                       style="width: 100%; padding: 1rem; border: 2px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; border-radius: 12px; font-size: 1rem;">
+                            </div>
+                            <div>
+                                <input type="email" placeholder="بريدك الإلكتروني" required 
+                                       style="width: 100%; padding: 1rem; border: 2px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; border-radius: 12px; font-size: 1rem;">
+                            </div>
+                            <div>
+                                <textarea rows="5" placeholder="رسالتك..." required 
+                                          style="width: 100%; padding: 1rem; border: 2px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; border-radius: 12px; font-size: 1rem;"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="justify-content: center;">
+                                <i class="fas fa-paper-plane"></i> إرسال الرسالة
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ترافل ناو</h4>
+                    <p>وكالة سفر وسياحة احترافية تقدم حلولاً متكاملة لجميع احتياجات سفرك حول العالم.</p>
+                    <div class="social-links">
+                        <a href="https://x.com/Travelnow711" class="social-link" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.threads.com/@travelnow711" class="social-link" target="_blank">
+                            <i class="fab fa-threads"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#services">خدماتنا</a></li>
+                        <li><a href="#gallery">معرض الصور</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>خدماتنا</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">تذاكر الطيران</a></li>
+                        <li><a href="#">التأشيرات والموافقات</a></li>
+                        <li><a href="#">حجز الفنادق</a></li>
+                        <li><a href="#">تأجير السيارات</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© <span id="currentYear"></span> ترافل ناو - TravelNow. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر العودة للأعلى -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // تحديث السنة
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // تأثيرات الظهور عند التمرير
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // زر العودة للأعلى
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // التنقل السلس
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // معالجة نموذج الاتصال
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: this.querySelector('input[type="text"]').value,
+                email: this.querySelector('input[type="email"]').value,
+                message: this.querySelector('textarea').value
+            };
+            
+            // هنا يمكن إرسال البيانات للخادم
+            alert('شكراً لك ' + formData.name + '! سنتواصل معك قريباً.');
+            this.reset();
+        });
+
+        // إضافة تأثير للناف بار عند التمرير
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+            }
+        });
+    </script>
+</body>
+</html>
