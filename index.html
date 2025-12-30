@@ -6,28 +6,23 @@
     <title>ترافل ناو - TravelNow | وكالة سفر وسياحة احترافية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* نظام الألوان الاحترافي */
         :root {
-            --primary: #1a365d;       /* أزرق داكن فاخر */
-            --secondary: #d4af37;     /* ذهبي مميز */
-            --accent: #2d3748;        /* رمادي فاخر */
-            --light: #f8f9fa;         /* خلفية فاتحة */
-            --dark: #1a202c;          /* نص داكن */
-            --success: #38a169;       /* أخضر نجاح */
-            --danger: #e53e3e;        /* أحمر تنبيه */
+            --primary: #1a365d;
+            --secondary: #d4af37;
+            --accent: #2d3748;
+            --light: #f8f9fa;
+            --dark: #1a202c;
             --gradient: linear-gradient(135deg, #1a365d, #2d3748);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* إعادة الضبط */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* الخطوط الاحترافية */
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.7;
@@ -36,7 +31,6 @@
             overflow-x: hidden;
         }
 
-        /* شريط التنقل الثابت */
         .navbar {
             position: fixed;
             top: 0;
@@ -50,10 +44,13 @@
             border-bottom: 3px solid var(--secondary);
         }
 
-        .navbar .container {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+        }
+
+        .navbar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -123,7 +120,6 @@
             border-radius: 3px;
         }
 
-        /* الهيدر الرئيسي */
         .hero {
             min-height: 100vh;
             background: var(--gradient);
@@ -216,7 +212,6 @@
             transform: translateY(-5px);
         }
 
-        /* الأقسام */
         .section {
             padding: 6rem 2rem;
             position: relative;
@@ -251,7 +246,6 @@
             opacity: 0.8;
         }
 
-        /* بطاقات الخدمات */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -317,7 +311,6 @@
             line-height: 1.6;
         }
 
-        /* معرض الصور */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -367,7 +360,6 @@
             transform: translateY(0);
         }
 
-        /* قسم الاتصال */
         .contact-section {
             background: var(--gradient);
             color: white;
@@ -409,7 +401,6 @@
             color: var(--secondary);
         }
 
-        /* وسائل التواصل */
         .social-links {
             display: flex;
             gap: 1rem;
@@ -437,7 +428,6 @@
             transform: translateY(-5px);
         }
 
-        /* الفوتر */
         .footer {
             background: var(--dark);
             color: white;
@@ -485,7 +475,6 @@
             font-size: 0.9rem;
         }
 
-        /* تأثيرات التمرير */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -497,7 +486,6 @@
             transform: translateY(0);
         }
 
-        /* زر العودة للأعلى */
         .back-to-top {
             position: fixed;
             bottom: 2rem;
@@ -529,7 +517,6 @@
             background: #e6c34d;
         }
 
-        /* التجاوب */
         @media (max-width: 768px) {
             .navbar .container {
                 padding: 0 1rem;
@@ -597,7 +584,6 @@
     </style>
 </head>
 <body>
-    <!-- شريط التنقل -->
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">
@@ -615,7 +601,6 @@
         </div>
     </nav>
 
-    <!-- الهيدر الرئيسي -->
     <section id="home" class="hero">
         <div class="hero-content fade-in">
             <h1>رحلتك تبدأ مع <span style="color: #d4af37;">ترافل ناو</span></h1>
@@ -631,7 +616,6 @@
         </div>
     </section>
 
-    <!-- قسم الخدمات -->
     <section id="services" class="section">
         <div class="container">
             <div class="section-title fade-in">
@@ -640,7 +624,6 @@
                 <p>نقدم مجموعة متكاملة من خدمات السفر والسياحة بمعايير عالمية</p>
             </div>
             <div class="services-grid">
-                <!-- خدمة 1 -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <i class="fas fa-plane"></i>
@@ -648,7 +631,6 @@
                     <h3>تذاكر الطيران</h3>
                     <p>أفضل أسعار تذاكر الطيران لأي وجهة في العالم بأسعار منافسة وضمان أفضل العروض.</p>
                 </div>
-                <!-- خدمة 2 -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <i class="fas fa-passport"></i>
@@ -656,7 +638,6 @@
                     <h3>التأشيرات والموافقات</h3>
                     <p>إصدار جميع أنواع التأشيرات والموافقات الأمنية بسرعة وإحترافية عالية.</p>
                 </div>
-                <!-- خدمة 3 -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <i class="fas fa-hotel"></i>
@@ -664,7 +645,6 @@
                     <h3>حجز الفنادق</h3>
                     <p>حجوزات فندقية في أفضل الفنادق العالمية بأسعار حصرية وضمان أفضل الخدمات.</p>
                 </div>
-                <!-- خدمة 4 -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <i class="fas fa-car"></i>
@@ -672,7 +652,6 @@
                     <h3>تأجير السيارات</h3>
                     <p>تأجير سيارات بمواصفات مختلفة تناسب جميع الاحتياجات وبأسعار تنافسية.</p>
                 </div>
-                <!-- خدمة 5 -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <i class="fas fa-bus"></i>
@@ -680,7 +659,6 @@
                     <h3>النقل البري</h3>
                     <p>خدمات النقل البري بين الدول بخدمات متميزة ومركبات مريحة وآمنة.</p>
                 </div>
-                <!-- خدمة 6 -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <i class="fas fa-graduation-cap"></i>
@@ -692,7 +670,6 @@
         </div>
     </section>
 
-    <!-- معرض الصور -->
     <section id="gallery" class="section" style="background: #f8f9fa;">
         <div class="container">
             <div class="section-title fade-in">
@@ -701,7 +678,6 @@
                 <p>لقطات من إنجازاتنا وخدماتنا التي نقدمها لعملائنا الكرام</p>
             </div>
             <div class="gallery-grid">
-                <!-- صورة 1 -->
                 <div class="gallery-item fade-in">
                     <img src="https://i.postimg.cc/fLmbCpbt/22.jpg" 
                          alt="خدمات مصر - موافقات أمنية" 
@@ -711,7 +687,6 @@
                         <p>موافقات أمنية وتأشيرات مصرية</p>
                     </div>
                 </div>
-                <!-- صورة 2 -->
                 <div class="gallery-item fade-in">
                     <img src="https://i.postimg.cc/1zLf6TFM/33.jpg" 
                          alt="الصين - دعوات دخول" 
@@ -721,7 +696,6 @@
                         <p>دعوات دخول مسبقة للصين</p>
                     </div>
                 </div>
-                <!-- صورة 3 -->
                 <div class="gallery-item fade-in">
                     <img src="https://i.postimg.cc/28MRzDN0/FB-IMG-1747284913470.jpg" 
                          alt="الإمارات - تأشيرات" 
@@ -731,7 +705,6 @@
                         <p>تأشيرات سريعة للإمارات</p>
                     </div>
                 </div>
-                <!-- صورة 4 -->
                 <div class="gallery-item fade-in">
                     <img src="https://i.postimg.cc/W4Vy3pWS/FB-IMG-1747284919638.jpg" 
                          alt="عمان - سياحة" 
@@ -741,7 +714,6 @@
                         <p>تأشيرات سياحية لعمان</p>
                     </div>
                 </div>
-                <!-- صورة 5 -->
                 <div class="gallery-item fade-in">
                     <img src="https://i.postimg.cc/ht2mJppc/11.jpg" 
                          alt="تذاكر طيران" 
@@ -751,7 +723,6 @@
                         <p>أفضل الأسعار لأي وجهة</p>
                     </div>
                 </div>
-                <!-- صورة 6 -->
                 <div class="gallery-item fade-in">
                     <img src="https://i.postimg.cc/qqmrchY3/jmyʿ-alkhdmat.jpg" 
                          alt="جميع خدماتنا" 
@@ -765,7 +736,6 @@
         </div>
     </section>
 
-    <!-- قسم الاتصال -->
     <section id="contact" class="section">
         <div class="container">
             <div class="contact-section fade-in">
@@ -845,7 +815,6 @@
         </div>
     </section>
 
-    <!-- الفوتر -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -886,16 +855,13 @@
         </div>
     </footer>
 
-    <!-- زر العودة للأعلى -->
     <a href="#" class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </a>
 
     <script>
-        // تحديث السنة
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // تأثيرات الظهور عند التمرير
         const fadeElements = document.querySelectorAll('.fade-in');
         
         const observer = new IntersectionObserver((entries) => {
@@ -908,7 +874,6 @@
 
         fadeElements.forEach(el => observer.observe(el));
 
-        // زر العودة للأعلى
         const backToTop = document.getElementById('backToTop');
         
         window.addEventListener('scroll', () => {
@@ -919,7 +884,6 @@
             }
         });
 
-        // التنقل السلس
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -936,7 +900,6 @@
             });
         });
 
-        // معالجة نموذج الاتصال
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -946,12 +909,10 @@
                 message: this.querySelector('textarea').value
             };
             
-            // هنا يمكن إرسال البيانات للخادم
             alert('شكراً لك ' + formData.name + '! سنتواصل معك قريباً.');
             this.reset();
         });
 
-        // إضافة تأثير للناف بار عند التمرير
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 100) {
